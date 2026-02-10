@@ -22,6 +22,24 @@ export interface GeneralNavlink extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsAboutSection extends Struct.ComponentSchema {
+  collectionName: 'components_sections_about_sections';
+  info: {
+    description: 'About section with image, title, descriptions, and button';
+    displayName: 'About Section';
+  };
+  attributes: {
+    bulletPoints: Schema.Attribute.JSON;
+    buttonLink: Schema.Attribute.String;
+    buttonText: Schema.Attribute.String;
+    description1: Schema.Attribute.Text;
+    description2: Schema.Attribute.Text;
+    image: Schema.Attribute.Media<'images'>;
+    subtitle: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface SectionsCard extends Struct.ComponentSchema {
   collectionName: 'components_sections_cards';
   info: {
@@ -54,6 +72,19 @@ export interface SectionsNumberItem extends Struct.ComponentSchema {
   attributes: {
     label: Schema.Attribute.String & Schema.Attribute.Required;
     number: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface SectionsService extends Struct.ComponentSchema {
+  collectionName: 'components_sections_services';
+  info: {
+    description: 'Service offering with title, description, and icon';
+    displayName: 'Service';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    icon: Schema.Attribute.Media<'images'>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -99,9 +130,11 @@ declare module '@strapi/strapi' {
     export interface ComponentSchemas {
       'general.button': GeneralButton;
       'general.navlink': GeneralNavlink;
+      'sections.about-section': SectionsAboutSection;
       'sections.card': SectionsCard;
       'sections.number': SectionsNumber;
       'sections.number-item': SectionsNumberItem;
+      'sections.service': SectionsService;
       'sections.testimonial': SectionsTestimonial;
       'sections.text-card': SectionsTextCard;
       'sections.text-image': SectionsTextImage;
