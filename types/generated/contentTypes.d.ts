@@ -625,8 +625,25 @@ export interface ApiHomepageHomepage extends Struct.SingleTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    heroBackgroundColor: Schema.Attribute.String;
+    heroBackgroundType: Schema.Attribute.Enumeration<
+      ['image', 'local', 'color']
+    > &
+      Schema.Attribute.DefaultTo<'local'>;
     heroButtons: Schema.Attribute.Component<'general.button', true>;
     heroImages: Schema.Attribute.Media<'images', true>;
+    heroLocalImage: Schema.Attribute.String;
+    heroOverlayColor: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'#060621'>;
+    heroOverlayOpacity: Schema.Attribute.Decimal &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 1;
+          min: 0;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<0.7>;
     heroSubtitle: Schema.Attribute.Text;
     heroTitle: Schema.Attribute.String & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -638,6 +655,10 @@ export interface ApiHomepageHomepage extends Struct.SingleTypeSchema {
     logo: Schema.Attribute.Media<'images'>;
     navbar: Schema.Attribute.Component<'general.navlink', true>;
     publishedAt: Schema.Attribute.DateTime;
+    servicesSectionDescription: Schema.Attribute.Text;
+    servicesSectionSubtitle: Schema.Attribute.Text;
+    servicesSectionTitle: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'OUR WORK'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
